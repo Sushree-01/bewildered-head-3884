@@ -1,11 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
+import Login from './Pages/Login';
+import SignUp from './Pages/SignUp';
+import { Allroutes } from './Routes/Allroutes';
 
 function App() {
+ 
   return (
     <div className="App">
-      <h1>Trading Hub</h1>
-      <p>Home</p>
+      <Allroutes/>
+
+   
     </div>
   );
 }
