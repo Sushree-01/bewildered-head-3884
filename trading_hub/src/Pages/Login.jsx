@@ -24,7 +24,7 @@ password : ""
 }
 export default function  Login() {
     const [User, setUser] = useState(users);
-    const {Login,token }=useContext(AuthContext);
+    const {login,token }=useContext(AuthContext);
         const   navigate =  useNavigate()
     const handleChange=(e)=>{
        const { name , value } = e.target; 
@@ -48,7 +48,7 @@ export default function  Login() {
         }).then((res)=>{ 
           if(res.data.token){
             console.log(res.data.token)
-            Login(res.data.token)
+            login(res.data.token)
             navigate("/")
           }
         })

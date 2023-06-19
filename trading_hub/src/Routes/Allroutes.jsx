@@ -5,6 +5,8 @@ import { About } from '../Pages/About'
 import Login from '../Pages/Login'
 import SignUp from '../Pages/SignUp'
 import { ContactUs } from '../Pages/ContactUs'
+import Navbar from '../Components/Navbar'
+import { Notfound } from '../Pages/Notfound'
 export const Allroutes = () => {
   return (
     <div>
@@ -14,6 +16,8 @@ export const Allroutes = () => {
             <Route path='/login' element={<Login/>}/>
             <Route path='/signUp' element={<SignUp/>}/>
             <Route path='/contact'element={<ContactUs/>}/>
+            <Route path='/navbar' element={<Navbar/>}/>
+            <Route path='*' element={<Notfound/>}/>
         </Routes>
     </div>
   )

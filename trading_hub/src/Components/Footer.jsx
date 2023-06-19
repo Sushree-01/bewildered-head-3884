@@ -1,66 +1,120 @@
-import React from 'react'
-
-function Footer() {
+import { ReactNode } from 'react';
+import {
+  Box,
+  Container,
+  Stack,
+  SimpleGrid,
+  Text,
+  Link,
+  VisuallyHidden,
+  chakra,
+  useColorModeValue,
+  Img,
+} from '@chakra-ui/react';
+import { FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa';
+ 
+ 
+const ListHeader = ({ children }) => {
   return (
-    <div style={{
-        display:"flex",
-        alignItems:"center",
-        justifyContent:"space-between",
-        marginTop:"20px",
-        position:"fixed",
-        bottom:0,
-        background:"white",
-        width:"100%"
-    }}>
-        <div style={{
-            display:"flex",
-            alignItems:"center",
-            justifyContent:"space-around",
-            width:"75%"
-        }}>
-        <p style={{
-            color:"gray",
-            fontSize:"12px"
-        }}><b>More Behance</b></p>
-        <p>|</p>
-        <p style={{
-            color:"gray",
-            fontSize:"12px"
-        }}><b>English</b></p>
-        <p>|</p>
-        <p style={{
-            color:"gray",
-            fontSize:"12px"
-        }}><b>Tou</b></p>
-        <p style={{
-            color:"gray",
-            fontSize:"12px"
-        }}><b>Privacy</b></p>
-        <p style={{
-            color:"gray",
-            fontSize:"12px"
-        }}><b>Community</b></p>
-        <p style={{
-            color:"gray",
-            fontSize:"12px"
-        }}><b>Help</b></p>
-        <p style={{
-            color:"gray",
-            fontSize:"12px"
-        }}><b>Cookie Preferences</b></p>
-        <p style={{
-            color:"gray",
-            fontSize:"12px"
-        }}><b>Do not sell or share my Personal Information</b></p>
-        </div>
-        
-        <div>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwIcprjwGjIvQqqg1N-_XvNK0q-Y4R1OVGlqL_hx_FSrUtnt0ROwEQIR8_7we00ruN4H0&usqp=CAU" alt="error" style={{
-                width:"40px"
-            }}/>
-        </div>
-    </div>
-  )
-}
+    <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
+      {children}
+    </Text>
+  );
+};
 
-export default Footer;
+const SocialButton = ({
+  children,
+  label,
+  href,
+}) => {
+  return (
+    <chakra.button
+      bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
+      rounded={'full'}
+      w={8}
+      h={8}
+      cursor={'pointer'}
+      as={'a'}
+      href={href}
+      display={'inline-flex'}
+      alignItems={'center'}
+      justifyContent={'center'}
+      transition={'background 0.3s ease'}
+      _hover={{
+        bg: useColorModeValue('blackAlpha.200', 'whiteAlpha.200'),
+      }}>
+      <VisuallyHidden>{label}</VisuallyHidden>
+      {children}
+    </chakra.button>
+  );
+};
+
+export default function  Footer() {
+  return (
+    <Box
+      bg={useColorModeValue('gray.100', 'gray.900')}
+      color={useColorModeValue('gray.700', 'gray.200')} width={"91%"} marginLeft={"5%"}>
+      <Container as={Stack} maxW={'6xl'} py={10}>
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
+          <Stack align={'flex-start'}>
+            <ListHeader>Company</ListHeader>
+            <Link href={'#'}>About Us</Link>
+            <Link href={'#'}>Blog</Link>
+            <Link href={'#'}>Careers</Link>
+            <Link href={'#'}>Contact Us</Link>
+            <Img  src="https://n.nordstrommedia.com/alias/IN.gif" alt="india" /> 
+            <Link>India</Link>
+          </Stack>
+
+          <Stack align={'flex-start'}>
+            <ListHeader>Support</ListHeader>
+            <Link href={'#'}>Help Center</Link>
+            <Link href={'#'}>Safety Center</Link>
+            <Link href={'#'}>Community Guidelines</Link>
+          </Stack>
+
+          <Stack align={'flex-start'}>
+            <ListHeader>Legal</ListHeader>
+            <Link href={'#'}>Cookies Policy</Link>
+            <Link href={'#'}>Privacy Policy</Link>
+            <Link href={'#'}>Terms of Service</Link>
+            <Link href={'#'}>Law Enforcement</Link>
+          </Stack>
+
+          <Stack align={'flex-start'}>
+            <ListHeader>Install App</ListHeader>
+            <Img src="https://lh3.googleusercontent.com/q1k2l5CwMV31JdDXcpN4Ey7O43PxnjAuZBTmcHEwQxVuv_2wCE2gAAQMWxwNUC2FYEOnYgFPOpw6kmHJWuEGeIBLTj9CuxcOEeU8UXyzWJq4NJM3lg=s0"/>
+            <Img src="https://developer.apple.com/news/images/download-on-the-app-store-badge.png" h={50}/>
+          </Stack>
+        </SimpleGrid>
+      </Container>
+
+      <Box
+        borderTopWidth={1}
+        borderStyle={'solid'}
+        borderColor={useColorModeValue('gray.200', 'gray.700')}>
+        <Container
+          as={Stack}
+          maxW={'6xl'}
+          py={4}
+          direction={{ base: 'column', md: 'row' }}
+          spacing={4}
+          justify={{ md: 'space-between' }}
+          align={{ md: 'center' }}>
+          <Text> © 2023 Trading Hub, Inc.. All rights reserved</Text>
+          <Stack direction={'row'} spacing={6}>
+            <SocialButton label={'Twitter'} href={'#'}>
+              <FaTwitter />
+            </SocialButton>
+            <SocialButton label={'YouTube'} href={'#'}>
+              <FaYoutube />
+            </SocialButton>
+            <SocialButton label={'Instagram'} href={'#'}>
+              <FaInstagram />
+            </SocialButton>
+          </Stack>
+        </Container>
+      </Box>
+    </Box>
+  );
+}
